@@ -1,13 +1,14 @@
+// user.repository.ts
 import { Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserRepository } from './repository/user.repository';
-import { UserEntity } from './entity/user.entity';
+import { UserEntity } from '../entity/user.entity';
 
 @Injectable()
-export class UserService {
+export class UserRepository {
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   async findAndCount() {
