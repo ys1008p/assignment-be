@@ -1,19 +1,21 @@
+// user.entity.ts
+
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class UserEntity {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'timestamp with time zone' })
-  createAt: Date;
+  createat: Date;
 
   @Column({ type: 'timestamp with time zone' })
-  updateAt: Date;
+  updateat: Date;
 
   @Column({ type: 'uuid' })
   uuid: string;
 
   @Column({ type: 'varchar' })
-  userId: string;
+  userid: string;
 }
