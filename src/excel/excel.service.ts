@@ -10,6 +10,12 @@ export class ExcelService {
     @InjectRepository(ExcelBaller)
     private excelBallerRepository: Repository<ExcelBaller>,
     @InjectRepository(ExcelCloth)
-    private ExcelClothRepository: Repository<ExcelCloth>,
+    private excelClothRepository: Repository<ExcelCloth>,
   ) {}
+
+  async getExcelClothByAbleCharacter(
+    ablecharacter: number,
+  ): Promise<ExcelCloth[]> {
+    return await this.excelClothRepository.find({ where: { ablecharacter } });
+  }
 }
