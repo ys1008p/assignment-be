@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UserModule } from "./user/user.module";
-import { User } from "./user/entity/user.entity";
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -17,7 +16,9 @@ import { User } from "./user/entity/user.entity";
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+
+      //synchronize true 이면, db 스키마 변경됨
+      synchronize: false,
 
       // 서버의 SSL 인증서를 신뢰할지 여부
       ssl: {

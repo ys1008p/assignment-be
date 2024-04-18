@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class UserCharacter {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: number;
 
@@ -11,9 +11,15 @@ export class User {
   @Column({ type: 'timestamp with time zone' })
   updateat: Date;
 
-  @Column({ type: 'uuid' })
-  uuid: string;
+  @Column({ type: 'bigint' })
+  characterindex: number;
 
-  @Column({ type: 'varchar' })
-  userid: string;
+  @Column({ type: 'bigint' })
+  employerid: number;
+
+  @Column({ type: 'smallint' })
+  characterstatus: number;
+
+  @Column({ type: 'varchar', nullable: true })
+  etc: string | null;
 }
