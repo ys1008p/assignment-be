@@ -13,6 +13,10 @@ export class ExcelService {
     private excelClothRepository: Repository<ExcelCloth>,
   ) {}
 
+  async getAllExcelCloths(): Promise<ExcelCloth[]> {
+    return await this.excelClothRepository.find();
+  }
+
   async getExcelClothByAbleCharacter(
     ablecharacter: number,
   ): Promise<ExcelCloth[]> {

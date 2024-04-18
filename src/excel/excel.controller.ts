@@ -6,6 +6,11 @@ import { ExcelCloth } from './entity/excelCloth.entity';
 export class ExcelController {
   constructor(private readonly excelService: ExcelService) {}
 
+  @Get('cloth')
+  getAllCloth(): Promise<ExcelCloth[]> {
+    return this.excelService.getAllExcelCloths();
+  }
+
   @Get('cloth/:ableCharacter')
   getAbleCloth(
     @Param('ableCharacter') ableCharacter: number,
