@@ -40,11 +40,12 @@ export class UserController {
 
   //유저의 의상 목록 유저아이디(number)로 검색
   @Get(':id/cloths')
-  getUserAllCloths(
-    @Param('id') empolyerId: number,
-  ): Promise<UserClothCustom[]> {
-    return this.userService.getUserAllCloths(empolyerId);
+  async getUserAllCloths(
+    @Param('id') employerId: number,
+  ): Promise<{ userCloth: UserClothCustom }[]> {
+    return this.userService.getUserAllCloths(employerId);
   }
+
   //유저 의상 등록, employerid(number)로 등록
   @Post('cloths')
   postUserCloth(@Body() data: CreateUserClothDto): void {

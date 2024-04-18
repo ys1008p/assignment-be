@@ -36,19 +36,24 @@ export class UserService {
     });
   }
 
-  async getUserAllCloths(employerId: number): Promise<UserClothCustom[]> {
-    return this.userClothRepository.find({
+  async getUserAllCloths(
+    employerId: number,
+  ): Promise<{ userCloth: UserClothCustom }[]> {
+    const userCloths = await this.userClothRepository.find({
       where: {
         employerid: employerId,
       },
+      relations: ['excelCloth'],
     });
+
+    return userCloths.map((userCloth) => ({
+      userCloth,
+    }));
   }
 
   async createUserCloth(data: CreateUserClothDto): Promise<void> {
-    // CreateUserClothDto에서 필요한 데이터 추출
     const { employerid, channel, clothno } = data;
 
-    // 의상 생성 및 저장
     const newCloth = new UserClothCustom();
     newCloth.employerid = Number(employerid);
     newCloth.clothno = Number(clothno);
@@ -66,7 +71,6 @@ export class UserService {
       where: { id: clothId },
     });
 
-    // UpdateUserClothDto 객체에서 필요한 정보를 추출하여 의상을 업데이트합니다.
     if (data.characteruid !== undefined) {
       clothToUpdate.characteruid = Number(data.characteruid);
     }
@@ -77,11 +81,10 @@ export class UserService {
       clothToUpdate.islock = data.islock;
     }
 
-    // 업데이트된 의상을 저장합니다.
     await this.userClothRepository.save(clothToUpdate);
   }
 
   async deleteUserClothsById(id: number): Promise<void> {
-    this.userClothRepository.delete({ id: id });
+    await this.userClothRepository.delete({ id: id });
   }
 }

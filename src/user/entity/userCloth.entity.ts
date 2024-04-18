@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { ExcelCloth } from '../../excel/entity/excelCloth.entity';
 
 @Entity()
 export class UserClothCustom {
@@ -34,4 +41,8 @@ export class UserClothCustom {
 
   @Column({ type: 'boolean' })
   islock: boolean;
+
+  @ManyToOne(() => ExcelCloth)
+  @JoinColumn({ name: 'clothno', referencedColumnName: 'index' })
+  excelCloth: ExcelCloth;
 }
