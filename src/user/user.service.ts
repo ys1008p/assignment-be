@@ -5,6 +5,7 @@ import { User } from './entity/user.entity';
 import { UserCharacter } from './entity/userCharacter.entity';
 import { UserClothCustom } from './entity/userCloth.entity';
 import { CreateUserClothDto } from './dto/create-userCloth.dto';
+import { UpdateUserClothDto } from './dto/update-userCloth.dto';
 
 @Injectable()
 export class UserService {
@@ -45,14 +46,39 @@ export class UserService {
 
   async createUserCloth(data: CreateUserClothDto): Promise<void> {
     // CreateUserClothDto에서 필요한 데이터 추출
-    const { employerid } = data;
+    const { employerid, channel, clothno } = data;
 
     // 의상 생성 및 저장
     const newCloth = new UserClothCustom();
     newCloth.employerid = Number(employerid);
+    newCloth.clothno = Number(clothno);
+    newCloth.channel = channel;
     newCloth.createat = new Date();
 
     await this.userClothRepository.save(newCloth);
+  }
+
+  async updateUserCloth(
+    clothId: number,
+    data: UpdateUserClothDto,
+  ): Promise<void> {
+    const clothToUpdate = await this.userClothRepository.findOne({
+      where: { id: clothId },
+    });
+
+    // UpdateUserClothDto 객체에서 필요한 정보를 추출하여 의상을 업데이트합니다.
+    if (data.characteruid !== undefined) {
+      clothToUpdate.characteruid = Number(data.characteruid);
+    }
+    if (data.isequiped !== undefined) {
+      clothToUpdate.isequiped = data.isequiped;
+    }
+    if (data.islock !== undefined) {
+      clothToUpdate.islock = data.islock;
+    }
+
+    // 업데이트된 의상을 저장합니다.
+    await this.userClothRepository.save(clothToUpdate);
   }
 
   async deleteUserClothsById(id: number): Promise<void> {

@@ -22,8 +22,8 @@ export class CreateUserClothDto {
   employerid: bigint;
 
   @IsInt()
-  @IsOptional()
-  characteruid?: bigint;
+  @IsNotEmpty()
+  characteruid: bigint;
 
   @IsBoolean()
   @IsOptional()
@@ -34,12 +34,12 @@ export class CreateUserClothDto {
   isstatus?: number;
 
   @IsInt()
-  @IsOptional()
-  clothno?: bigint;
+  @IsNotEmpty()
+  clothno: bigint;
 
   @IsInt()
-  @IsOptional()
-  channel?: number;
+  @IsNotEmpty()
+  channel: number;
 
   @IsBoolean()
   @IsOptional()
