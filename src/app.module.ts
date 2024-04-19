@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { ExcelModule } from './excel/excel.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -29,5 +30,6 @@ import { ExcelModule } from './excel/excel.module';
     UserModule,
     ExcelModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
