@@ -1,9 +1,10 @@
-import {
-  IsInt,
-  IsNotEmpty,
-} from 'class-validator';
+import { IsInt, IsNotEmpty } from 'class-validator';
 
 export class CreateUserClothDto {
+  @IsInt()
+  @IsNotEmpty()
+  characteruid: bigint;
+
   @IsInt()
   @IsNotEmpty()
   employerid: bigint;
