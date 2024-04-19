@@ -37,19 +37,13 @@ export class UserService {
     });
   }
 
-  async getUserAllCloths(
-    employerId: number,
-  ): Promise<{ userCloth: UserClothCustom }[]> {
-    const userCloths = await this.userClothRepository.find({
+  async getUserAllCloths(employerId: number): Promise<UserClothCustom[]> {
+    return this.userClothRepository.find({
       where: {
         employerid: employerId,
       },
       relations: ['excelCloth'],
     });
-
-    return userCloths.map((userCloth) => ({
-      userCloth,
-    }));
   }
 
   async createUserCloth(data: CreateUserClothDto): Promise<void> {
