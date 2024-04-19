@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { ExcelService } from './excel.service';
 import { ExcelCloth } from './entity/excelCloth.entity';
 
-@Controller('excel')
+@Controller('api/excel')
 export class ExcelController {
   constructor(private readonly excelService: ExcelService) {}
 

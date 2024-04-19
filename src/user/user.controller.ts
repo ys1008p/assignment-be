@@ -14,7 +14,7 @@ import { UserClothCustom } from './entity/userCloth.entity';
 import { CreateUserClothDto } from './dto/create-userCloth.dto';
 import { UpdateUserClothDto } from './dto/update-userCloth.dto';
 
-@Controller('users')
+@Controller('api/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
