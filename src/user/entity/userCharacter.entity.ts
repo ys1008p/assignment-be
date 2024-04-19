@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { ExcelBaller } from '../../excel/entity/excelBaller.entity';
 
 @Entity()
 export class UserCharacter {
@@ -22,4 +23,8 @@ export class UserCharacter {
 
   @Column({ type: 'varchar', nullable: true })
   etc: string | null;
+
+  @ManyToOne(() => ExcelBaller)
+  @JoinColumn({ name: 'characterindex', referencedColumnName: 'index' })
+  excelBaller: ExcelBaller;
 }

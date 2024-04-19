@@ -17,6 +17,9 @@ export class ExcelBaller {
   @Column({ type: 'integer' })
   initdeploy: number;
 
+  @Column({ type: 'varchar' })
+  name: string;
+
   @Column({ type: 'bigint' })
   stat: number;
 
