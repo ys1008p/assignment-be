@@ -53,9 +53,10 @@ export class UserService {
   }
 
   async createUserCloth(data: CreateUserClothDto): Promise<void> {
-    const { employerid, channel, clothno } = data;
+    const { characteruid, employerid, channel, clothno } = data;
 
     const newCloth = new UserClothCustom();
+    newCloth.characteruid = Number(characteruid);
     newCloth.employerid = Number(employerid);
     newCloth.clothno = Number(clothno);
     newCloth.channel = channel;
