@@ -54,6 +54,8 @@ export class UserService {
       newCloth.clothno = Number(clothno);
       newCloth.channel = channel;
       newCloth.createat = new Date();
+      newCloth.updateat = newCloth.createat;
+
       await this.userClothRepository.save(newCloth);
 
       return 'success';
