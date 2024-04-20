@@ -42,27 +42,27 @@ export class UserController {
   @Get(':id/cloths')
   async getUserAllCloths(
     @Param('id') employerId: number,
-  ): Promise<{ userCloth: UserClothCustom }[]> {
+  ): Promise<UserClothCustom[]> {
     return this.userService.getUserAllCloths(employerId);
   }
 
-  //유저 의상 등록, employerid(number)로 등록
+  //유저 의상 등록
   @Post('cloths')
-  postUserCloth(@Body() data: CreateUserClothDto): void {
-    this.userService.createUserCloth(data);
+  postUserCloth(@Body() data: CreateUserClothDto): Promise<string> {
+    return this.userService.createUserCloth(data);
   }
 
   @Patch('cloths/:clothId')
   updateUserCloth(
     @Param('clothId') clothId: number,
     @Body() data: UpdateUserClothDto,
-  ): void {
-    this.userService.updateUserCloth(clothId, data);
+  ): Promise<string> {
+    return this.userService.updateUserCloth(clothId, data);
   }
 
   //유저 의상 의상아이디(number)로 삭제
   @Delete('cloths/:clothId')
-  deleteUserCloth(@Param('clothId') clothId: number): void {
-    this.userService.deleteUserClothsById(clothId);
+  deleteUserCloth(@Param('clothId') clothId: number): Promise<string> {
+    return this.userService.deleteUserClothsById(clothId);
   }
 }
