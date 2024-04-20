@@ -12,4 +12,8 @@ export class UpdateUserClothDto {
   @IsBoolean()
   @IsOptional()
   islock?: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  updateat?: boolean;
 }

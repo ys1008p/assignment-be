@@ -80,6 +80,7 @@ export class UserService {
       if (data.islock !== undefined) {
         clothToUpdate.islock = data.islock;
       }
+      clothToUpdate.updateat = new Date();
 
       await this.userClothRepository.save(clothToUpdate);
       return 'success';
